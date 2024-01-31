@@ -46,6 +46,14 @@ export class ProductRepository implements IProductRepo {
             qb.where("product.isActive = '1'");
           }),
         )
+        .where(
+          new Brackets((qb) => {
+            if (query?.search && query?.searchBy)
+              qb.andWhere(`product.${query?.searchBy} like :search`, {
+                search: `%${query?.search}%`,
+              });
+          }),
+        )
         .leftJoinAndMapOne(
           'product.group',
           GroupEntity,

@@ -11,7 +11,8 @@ import {
 import { GroupEntity } from 'src/database/entities/group.entity';
 import { BaseDto } from './base.request';
 
-export class ProductRequest extends BaseDto {
+export class ProductRequest extends BaseDto {}
+export class CreateProductReq {
   @IsString()
   @ApiProperty()
   productName: string;
@@ -28,6 +29,7 @@ export class ProductRequest extends BaseDto {
   @ApiProperty()
   inStock: number;
 
-  @ApiProperty({ type: () => GroupEntity })
-  group: GroupEntity;
+  @IsString()
+  @ApiProperty()
+  groupId: string;
 }

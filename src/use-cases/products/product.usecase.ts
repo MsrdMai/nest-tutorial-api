@@ -17,10 +17,9 @@ export class ProductUsecase {
 
   async findAll(
     query: ProductRequest,
-    id: string,
   ): Promise<{ products: ProductEntity[]; total: number }> {
     try {
-      return await this.productRepo.findAll(query, id);
+      return await this.productRepo.findAll(query);
     } catch (e) {
       throw e;
     }
@@ -29,6 +28,22 @@ export class ProductUsecase {
   async save(product: ProductEntity): Promise<ProductEntity> {
     try {
       return await this.productRepo.save(product);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async update(id: string, prodReq: ProductEntity): Promise<ProductEntity> {
+    try {
+      const prod = await this.productRepo.updateProduct(id, prodReq);
+      return prod;
+    } catch (e) {
+      throw e;
+    }
+  }
+  async delete(id: string, user: string): Promise<void> {
+    try {
+      await this.productRepo.deleteProduct(id, user);
     } catch (e) {
       throw e;
     }

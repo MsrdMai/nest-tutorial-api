@@ -16,9 +16,6 @@ export class ProductEntity extends CommonColumn {
   @Column()
   inStock: number;
 
-  @ManyToOne(() => GroupEntity, (group) => group.id, {
-    eager: true,
-  })
-  @JoinColumn({ name: 'factoryId' })
-  group: GroupEntity;
+  @Column()
+  groupId: string;
 }

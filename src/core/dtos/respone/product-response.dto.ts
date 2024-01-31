@@ -5,5 +5,5 @@ export class ProductResponse {
   discrption: string;
   price: number;
   inStock: number;
-  group;
+  group: GroupResponse;
 }

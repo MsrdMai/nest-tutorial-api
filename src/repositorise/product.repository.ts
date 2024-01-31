@@ -139,6 +139,7 @@ export class ProductRepository implements IProductRepo {
         await this.Product.save(productDelete);
         await this.Product.softRemove(productDelete);
 
+        // softRemove This feature does not delete records but instead updates the column decorated
         return resolve('ลบข้อมูลสำเร็จ');
       } catch (e) {
         return reject(e);

@@ -11,6 +11,7 @@ import { Brackets, Repository } from 'typeorm';
 import { ProductEntity } from 'src/database/entities/product.entity';
 import { OrderEntity } from 'src/database/entities/order.entity';
 import { OrderRequest, CreateOrder } from 'src/core/dtos/request/order.request';
+import { GroupEntity } from 'src/database/entities/group.entity';
 
 export interface IOrderRepo {
   getOrderById(id: string): Promise<OrderEntity>;
@@ -82,12 +83,29 @@ export class OrderRepository implements IOrderRepo {
           'product',
           'product.id = orderItem.productId',
         )
+        .leftJoinAndMapOne(
+          'product.group',
+          GroupEntity,
+          'group',
+          'group.id = product.groupId',
+        )
         .where(
           new Brackets((qb) => {
             qb.andWhere('order.id = :id', { id });
           }),
         )
         .getOne();
+
+      orderItem?.items.forEach((it) => {
+        delete it['deletedDate'];
+        delete it['deletedBy'];
+        delete it['createdBy'];
+        delete it['createdDate'];
+        delete it['updatedDate'];
+        delete it['updatedBy'];
+        delete it['isActive'];
+      });
+
       return orderItem;
     } catch (error) {
       if (error && error.message && error.status) {

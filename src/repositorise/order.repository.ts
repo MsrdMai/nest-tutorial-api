@@ -71,11 +71,12 @@ export class OrderRepository implements IOrderRepo {
     }
   }
 
+  // if not have orderItem.product will return ---> productId
   async getOrderById(id: string): Promise<OrderEntity> {
     try {
       const orderItem = await this.Order.createQueryBuilder('order')
         .leftJoinAndSelect('order.items', 'orderItem', 'orderItem.isActive = 1')
-        .leftJoinAndMapMany(
+        .leftJoinAndMapOne(
           'orderItem.product',
           ProductEntity,
           'product',

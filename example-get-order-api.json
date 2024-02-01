@@ -1,0 +1,86 @@
+{
+  "statusCode": 200,
+  "responseCode": "[API200]",
+  "message": "สำเร็จ",
+  "data": {
+      "id": "4B66433E-F36B-1410-8C04-00F73B18BF0D",
+      "isActive": true,
+      "createdDate": "2024-02-01T04:07:53.339Z",
+      "createdBy": "Mai",
+      "updatedDate": "2024-01-31T21:07:53.350Z",
+      "updatedBy": null,
+      "deletedDate": null,
+      "deletedBy": null,
+      "orderCode": "ORDER#01/02/2024-11:07:53",
+      "discount": 20,
+      "items": [
+          {
+              "id": "5666433E-F36B-1410-8C04-00F73B18BF0D",
+              "productId": "F816433E-F36B-1410-8C03-00F73B18BF0D",
+              "quantity": 2,
+              "amount": 160,
+              "product": {
+                  "id": "F816433E-F36B-1410-8C03-00F73B18BF0D",
+                  "isActive": true,
+                  "createdDate": "2024-01-31T08:02:10.181Z",
+                  "createdBy": "Mai",
+                  "updatedDate": "2024-01-31T01:02:10.196Z",
+                  "updatedBy": null,
+                  "deletedDate": null,
+                  "deletedBy": null,
+                  "productName": "ส้ม",
+                  "discrption": "สีส้ม",
+                  "price": 80,
+                  "inStock": 30,
+                  "groupId": "E916433E-F36B-1410-8C03-00F73B18BF0D",
+                  "group": {
+                      "id": "E916433E-F36B-1410-8C03-00F73B18BF0D",
+                      "isActive": true,
+                      "createdDate": "2024-01-31T06:14:55.896Z",
+                      "createdBy": "Mai",
+                      "updatedDate": "2024-01-30T23:14:55.896Z",
+                      "updatedBy": null,
+                      "deletedDate": null,
+                      "deletedBy": null,
+                      "groupName": "ผลไม้",
+                      "remark": "ผลไม้"
+                  }
+              }
+          },
+          {
+              "id": "5D66433E-F36B-1410-8C04-00F73B18BF0D",
+              "productId": "FD16433E-F36B-1410-8C03-00F73B18BF0D",
+              "quantity": 2,
+              "amount": 40,
+              "product": {
+                  "id": "FD16433E-F36B-1410-8C03-00F73B18BF0D",
+                  "isActive": true,
+                  "createdDate": "2024-01-31T08:53:00.393Z",
+                  "createdBy": "Mai",
+                  "updatedDate": "2024-01-31T01:53:00.410Z",
+                  "updatedBy": null,
+                  "deletedDate": null,
+                  "deletedBy": null,
+                  "productName": "โค้ก",
+                  "discrption": "น้ำอัดลม",
+                  "price": 20,
+                  "inStock": 50,
+                  "groupId": "F716433E-F36B-1410-8C03-00F73B18BF0D",
+                  "group": {
+                      "id": "F716433E-F36B-1410-8C03-00F73B18BF0D",
+                      "isActive": true,
+                      "createdDate": "2024-01-31T07:29:47.918Z",
+                      "createdBy": "Mai",
+                      "updatedDate": "2024-01-31T00:29:47.940Z",
+                      "updatedBy": null,
+                      "deletedDate": null,
+                      "deletedBy": null,
+                      "groupName": "เครื่องดื่ม",
+                      "remark": "เครื่องดื่ม"
+                  }
+              }
+          }
+      ]
+  },
+  "timestamp": 1706782700663
+}

@@ -12,7 +12,24 @@ export class OrderHandler {
 
   async getList(query: OrderRequest) {
     try {
-      return await this.od.findAll(query);
+      // return await this.od.findAll(query);
+      const order = (await this.od.findAll(query)) as any;
+
+      const ordersTransform = order.orders?.map((od) => {
+        let countAllAmount = 0;
+        let countAllQuantity = 0;
+        od?.items.map((it) => {
+          countAllAmount += it.amount;
+          countAllQuantity += it.quantity;
+        });
+
+        (od.priceTotal = countAllAmount),
+          (od.quantityTotal = countAllQuantity),
+          (od.discountInclude =
+            countAllAmount - (od.discount / 100) * countAllAmount);
+      });
+
+      return order;
     } catch (e) {
       throw e;
     }

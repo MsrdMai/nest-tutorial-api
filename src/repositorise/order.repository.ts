@@ -48,13 +48,38 @@ export class OrderRepository implements IOrderRepo {
               });
           }),
         )
+        .leftJoinAndSelect('order.items', 'orderItem', 'orderItem.isActive = 1')
+        .leftJoinAndMapOne(
+          'orderItem.product',
+          ProductEntity,
+          'product',
+          'product.id = orderItem.productId',
+        )
         .orderBy(
-          `product.${sortBy ?? 'productName'}`,
+          `order.${sortBy ?? 'orderCode'}`,
           sort === 'DESC' ? 'DESC' : 'ASC',
         )
         .skip(page ? (page - 1) * perPage : null)
         .take(perPage ?? null)
         .getManyAndCount();
+
+      orders?.forEach((or) => {
+        or.items.forEach((it) => {
+          delete it['deletedDate'];
+          delete it['deletedBy'];
+          delete it['createdBy'];
+          delete it['createdDate'];
+          delete it['updatedDate'];
+          delete it['updatedBy'];
+          delete it['isActive'];
+          delete it['product']['deletedDate'];
+          delete it['product']['deletedBy'];
+          delete it['product']['createdBy'];
+          delete it['product']['createdDate'];
+          delete it['product']['updatedDate'];
+          delete it['product']['updatedBy'];
+        });
+      });
 
       return { orders, total };
     } catch {}

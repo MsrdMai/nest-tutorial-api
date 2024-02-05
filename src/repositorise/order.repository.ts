@@ -104,6 +104,18 @@ export class OrderRepository implements IOrderRepo {
         delete it['updatedDate'];
         delete it['updatedBy'];
         delete it['isActive'];
+        delete it['product']['deletedDate'];
+        delete it['product']['deletedBy'];
+        delete it['product']['createdBy'];
+        delete it['product']['createdDate'];
+        delete it['product']['updatedDate'];
+        delete it['product']['updatedBy'];
+        delete it['product']['group']['deletedDate'];
+        delete it['product']['group']['deletedBy'];
+        delete it['product']['group']['createdBy'];
+        delete it['product']['group']['createdDate'];
+        delete it['product']['group']['updatedDate'];
+        delete it['product']['group']['updatedBy'];
       });
 
       return orderItem;

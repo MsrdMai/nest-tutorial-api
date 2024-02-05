@@ -48,6 +48,10 @@ export class OrderRepository implements IOrderRepo {
               });
           }),
         )
+        // .where(
+        //   `CONVERT(DATE, order.createdDate, 103) BETWEEN CONVERT(DATE, GETDATE(), 103) AND CONVERT(DATE, GETDATE(), 103)`,
+        // )
+        // This Month
         .leftJoinAndSelect('order.items', 'orderItem', 'orderItem.isActive = 1')
         .leftJoinAndMapOne(
           'orderItem.product',

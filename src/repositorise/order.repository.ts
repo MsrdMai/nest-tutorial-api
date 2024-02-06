@@ -46,11 +46,16 @@ export class OrderRepository implements IOrderRepo {
               qb.andWhere(`order.${query?.searchBy} like :search`, {
                 search: `%${query?.search}%`,
               });
+            if (query.startDate && query.endDate) {
+              qb.andWhere(
+                `CONVERT(DATE, order.createdDate, 103) BETWEEN CONVERT(DATE, '${query.startDate}', 103) AND CONVERT(DATE, '${query.endDate}', 103)`,
+              );
+            }
           }),
         )
-        .where(
-          `CONVERT(DATE, order.createdDate, 103) BETWEEN CONVERT(DATE, GETDATE(), 103) AND CONVERT(DATE, GETDATE(), 103)`,
-        )
+        // .where(
+        //   `CONVERT(DATE, order.createdDate, 103) BETWEEN CONVERT(DATE, GETDATE(), 103) AND CONVERT(DATE, GETDATE(), 103)`,
+        // )
         // This Month
         .leftJoinAndSelect('order.items', 'orderItem', 'orderItem.isActive = 1')
         .leftJoinAndMapOne(
@@ -171,6 +176,7 @@ export class OrderRepository implements IOrderRepo {
 
       orderFind.discount = discount;
       orderFind.items = items;
+      orderFind.updatedDate = new Date();
 
       const saveResult = await this.Order.save(orderFind);
       return saveResult;
